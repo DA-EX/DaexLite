@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.company.daex.web.remarkanswer.RemarkAnswerEdit"
+        datasource="remarkAnswerDs"
+        messagesPack="com.company.daex.web.remarkanswer">
+    <dsContext>
+        <datasource id="remarkAnswerDs"
+                    class="com.company.daex.entity.RemarkAnswer"
+                    view="remarkAnswer-view">
+            <collectionDatasource id="filesDs"
+                                  property="filesRemarkAnswer"/>
+        </datasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <grid id="grid"
+              spacing="true">
+            <columns count="2"/>
+            <rows>
+                <row>
+                    <label id="labelRemark"
+                           value="msg://labelRemark"
+                           width="80px"/>
+                    <textArea id="TextAreaRemark"
+                              datasource="remarkAnswerDs"
+                              property="remark"
+                              width="500px"/>
+                </row>
+                <row>
+                    <label id="labelAnswer"
+                           value="msg://labelAnswer"
+                           width="80px"/>
+                    <textArea id="TextAreaAnswer"
+                              datasource="remarkAnswerDs"
+                              property="answer"
+                              width="500px"/>
+                </row>
+                <row>
+                    <button id="buttonFixed"
+                            caption="msg://buttonFixed"
+                            enable="false"
+                            invoke="Fixed"/>
+                    <button id="buttonCreateRPDFile"
+                            caption="msg://buttonCreateRPDFIle"
+                            enable="false"
+                            invoke="CreateRPDFile"/>
+                </row>
+            </rows>
+        </grid>
+        <groupBox id="filesRemarkAnswerBox"
+                  caption="msg://filesRemarkAnswer">
+            <table id="filesTable"
+                   height="200px"
+                   width="100%">
+                <actions>
+                    <action id="add"/>
+                    <action id="remove"/>
+                </actions>
+                <columns>
+                    <column id="name"/>
+                    <column id="extension"/>
+                    <column id="size"/>
+                    <column id="createDate"/>
+                </columns>
+                <rows datasource="filesDs"/>
+                <buttonsPanel>
+                    <multiUpload id="multiUpload"
+                                 caption="msg://buttonDownload"
+                                 icon="icons/DAEX/download.png"/>
+                    <button id="buttonUnload"
+                            caption="msg://buttonUnload"
+                            enable="false"
+                            icon="icons/DAEX/unload.png"
+                            invoke="Unload"/>
+                    <button id="buttonAdd"
+                            action="filesTable.add"
+                            icon="icons/DAEX/add.png"/>
+                    <button id="buttonRemove"
+                            action="filesTable.remove"
+                            icon="icons/DAEX/delete.png"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

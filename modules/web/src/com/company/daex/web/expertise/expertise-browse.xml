@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.company.daex.web.expertise.ExpertiseBrowse"
+        focusComponent="expertisesTable"
+        lookupComponent="expertisesTable"
+        messagesPack="com.company.daex.web.expertise">
+    <dsContext>
+        <groupDatasource id="expertisesDs"
+                         class="com.company.daex.entity.Expertise"
+                         view="expertise-view_Main">
+            <query>
+                <![CDATA[select e from daex$Expertise e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="expertisesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="expertisesTable"
+                datasource="expertisesDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="expertisesTable"
+                    width="100%">
+            <actions>
+                <action id="create"
+                        openType="THIS_TAB"/>
+                <action id="edit"
+                        openType="NEW_TAB"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="exNumber"/>
+                <column id="isArchive"/>
+                <column id="isCompleted"/>
+                <column id="pressmark"/>
+                <column id="leaderEmployee"/>
+                <column id="customerMain"/>
+                <column id="customerTech"/>
+                <column id="agreementNumber"/>
+                <column id="agreementDate"/>
+                <column id="cost"/>
+                <column id="subjectName"/>
+                <column id="subjectAddress"/>
+                <column id="gpzu"/>
+            </columns>
+            <rows datasource="expertisesDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="expertisesTable.create"/>
+                <button id="editBtn"
+                        action="expertisesTable.edit"/>
+                <button id="removeBtn"
+                        action="expertisesTable.remove"/>
+                <button id="buttonReport_1"
+                        caption="msg://buttonReport_1"
+                        enable="false"
+                        invoke="Report_1"/>
+                <button id="buttonReport_2"
+                        caption="msg://buttonReport_2"
+                        enable="false"
+                        invoke="Report_2"/>
+                <button id="buttonReport_3"
+                        caption="msg://buttonReport_3"
+                        invoke="Report_3"/>
+                <button id="buttonReport_4"
+                        caption="msg://buttonReport_4"
+                        invoke="Report_4"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

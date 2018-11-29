@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.company.daex.web.remarkanswer.RemarkAnswerBrowse"
+        focusComponent="remarkAnswersTable"
+        lookupComponent="remarkAnswersTable"
+        messagesPack="com.company.daex.web.remarkanswer">
+    <dsContext>
+        <groupDatasource id="remarkAnswersDs"
+                         class="com.company.daex.entity.RemarkAnswer"
+                         view="remarkAnswer-view">
+            <query>
+                <![CDATA[select e from daex$RemarkAnswer e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="remarkAnswersTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="remarkAnswersTable"
+                datasource="remarkAnswersDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="remarkAnswersTable"
+                    width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="remark"
+                        maxTextLength="100"/>
+                <column id="answer"
+                        maxTextLength="100"/>
+                <column id="rpdFile.rpd.expertiseRPD.subjectName"
+                        maxTextLength="100"
+                        width="180"/>
+                <column id="rpdFile.rpd.pressmark"
+                        maxTextLength="100"
+                        width="180"/>
+                <column id="isFixed"
+                        width="100"/>
+            </columns>
+            <rows datasource="remarkAnswersDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true"
+                          visible="false">
+                <button id="createBtn"
+                        action="remarkAnswersTable.create"
+                        visible="false"/>
+                <button id="editBtn"
+                        action="remarkAnswersTable.edit"/>
+                <button id="removeBtn"
+                        action="remarkAnswersTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.company.daex.web.incomingdocumentfiledescriptor.IncomingDocumentFileDescriptorBrowse"
+        focusComponent="incomingDocumentFileDescriptorsTable"
+        lookupComponent="incomingDocumentFileDescriptorsTable"
+        messagesPack="com.company.daex.web.incomingdocumentfiledescriptor">
+    <dsContext>
+        <groupDatasource id="incomingDocumentFileDescriptorsDs"
+                         class="com.company.daex.entity.IncomingDocumentFileDescriptor"
+                         view="incomingDocumentFileDescriptor_1-view">
+            <query>
+                <![CDATA[select e from daex$IncomingDocumentFileDescriptor e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="incomingDocumentFileDescriptorsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="incomingDocumentFileDescriptorsTable"
+                datasource="incomingDocumentFileDescriptorsDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="incomingDocumentFileDescriptorsTable"
+                    multiselect="true"
+                    width="100%">
+            <columns>
+                <column id="incomingDocument.description"/>
+                <column id="fileDescriptor.name"
+                        caption="msg://columnNameFile"/>
+                <column id="fileDescriptor.createDate"/>
+                <column id="fileDescriptor.createdBy"/>
+            </columns>
+            <rows datasource="incomingDocumentFileDescriptorsDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true"/>
+        </groupTable>
+    </layout>
+</window>

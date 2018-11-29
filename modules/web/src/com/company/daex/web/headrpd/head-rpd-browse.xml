@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.company.daex.web.headrpd.HeadRPDBrowse"
+        focusComponent="headRPDsTable"
+        lookupComponent="headRPDsTable"
+        messagesPack="com.company.daex.web.headrpd">
+    <dsContext>
+        <groupDatasource id="headRPDsDs"
+                         class="com.company.daex.entity.HeadRPD"
+                         view="headRPD-view">
+            <query>
+                <![CDATA[select e from daex$HeadRPD e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="headRPDsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="headRPDsTable"
+                datasource="headRPDsDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="headRPDsTable"
+                    width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="pressmark"/>
+                <column id="name"/>
+            </columns>
+            <rows datasource="headRPDsDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="headRPDsTable.create"/>
+                <button id="editBtn"
+                        action="headRPDsTable.edit"/>
+                <button id="removeBtn"
+                        action="headRPDsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.company.daex.web.rpd.RPDEdit"
+        datasource="rpdDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.company.daex.web.rpd">
+    <dsContext>
+        <datasource id="rpdDs"
+                    class="com.company.daex.entity.RPD"
+                    view="rPD-view"/>
+        <collectionDatasource id="rpdFilesDs"
+                              class="com.company.daex.entity.RPDFile"
+                              view="rPDFile-view">
+            <query>
+                <![CDATA[select e from daex$RPDFile e where e.rpd.id = :ds$rpdDs]]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="headRPDsDs"
+                              class="com.company.daex.entity.HeadRPD">
+            <query>
+                <![CDATA[select e from daex$HeadRPD e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="scrollBox"
+            spacing="true">
+        <scrollBox id="scrollBox">
+            <grid spacing="true"
+                  width="440px">
+                <columns count="2"/>
+                <rows>
+                    <row>
+                        <label value="msg://labelRPD"/>
+                        <lookupPickerField datasource="rpdDs"
+                                           optionsDatasource="headRPDsDs"
+                                           property="headRPD"
+                                           width="340px"/>
+                    </row>
+                    <row>
+                        <label value="msg://labelTom"/>
+                        <textField id="fieldTom"
+                                   datasource="rpdDs"
+                                   property="tom"
+                                   width="100%"/>
+                    </row>
+                    <row>
+                        <label value="msg://labelPressmark"/>
+                        <textField datasource="rpdDs"
+                                   property="pressmark"
+                                   width="100%"/>
+                    </row>
+                </rows>
+            </grid>
+            <fieldGroup id="fieldGroup"
+                        datasource="rpdDs"
+                        visible="false">
+                <column width="250px">
+                    <field property="headRPD"/>
+                    <field property="tom"/>
+                    <field description="msg://tester1"
+                           property="pressmark"/>
+                </column>
+            </fieldGroup>
+            <groupBox id="prdFilesBox"
+                      caption="msg://com.company.daex.entity/RPD.prdFiles">
+                <table id="prdFilesTable"
+                       height="200px"
+                       width="100%">
+                    <actions>
+                        <action id="create"/>
+                        <action id="edit"/>
+                        <action id="remove"/>
+                    </actions>
+                    <columns>
+                        <column id="createTs"/>
+                        <column id="beginningdate"/>
+                        <column id="endingdate"/>
+                        <column id="isFinal"/>
+                    </columns>
+                    <rows datasource="rpdFilesDs"/>
+                    <buttonsPanel>
+                        <button id="addButton"
+                                caption="msg://addRecordButton"
+                                icon="icons/DAEX/create.png"
+                                invoke="AddRecord"/>
+                        <button action="prdFilesTable.edit"
+                                enable="false"
+                                icon="icons/DAEX/edit.png"/>
+                        <button action="prdFilesTable.remove"
+                                enable="false"
+                                icon="icons/DAEX/delete.png"/>
+                    </buttonsPanel>
+                </table>
+            </groupBox>
+        </scrollBox>
+        <frame screen="editWindowActions"/>
+    </layout>
+</window>

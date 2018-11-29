@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.company.daex.web.incomingdocument.Customer.IncomingDocumentEdit"
+        datasource="incomingDocumentDs"
+        messagesPack="com.company.daex.web.incomingdocument.Customer">
+    <dsContext>
+        <datasource id="incomingDocumentDs"
+                    class="com.company.daex.entity.IncomingDocument"
+                    view="incomingDocument-view-Customer">
+            <collectionDatasource id="filesDs"
+                                  property="files"/>
+        </datasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <grid spacing="true">
+            <columns count="2"/>
+            <rows>
+                <row>
+                    <label id="labelDescription"
+                           description="msg://labelDescription"
+                           value="msg://labelDescription"/>
+                    <textArea id="textAreaDescription"
+                              datasource="incomingDocumentDs"
+                              property="description"
+                              rowspan="2"
+                              width="300px"/>
+                </row>
+                <row/>
+            </rows>
+        </grid>
+        <groupBox id="filesBox"
+                  caption="msg://com.company.daex.entity/IncomingDocument.files">
+            <table id="filesTable"
+                   height="200px"
+                   width="100%">
+                <actions>
+                    <action id="add"/>
+                    <action id="remove"/>
+                </actions>
+                <columns>
+                    <column id="name"/>
+                    <column id="createDate"/>
+                    <column id="extension"/>
+                </columns>
+                <rows datasource="filesDs"/>
+                <buttonsPanel>
+                    <multiUpload id="multiUpload"
+                                 icon="icons/DAEX/download.png"/>
+                    <button id="buttonUnload"
+                            caption="msg://buttonUnload"
+                            enable="false"
+                            icon="icons/DAEX/unload.png"
+                            invoke="Unload"/>
+                    <button id="buttonRemove"
+                            action="filesTable.remove"
+                            icon="icons/DAEX/delete.png"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

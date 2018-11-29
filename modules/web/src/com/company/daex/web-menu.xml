@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
+    <menu id="documents"
+          description="mainMsg://document"
+          insertBefore="administration">
+        <menu id="inbox">
+            <item screen="daex$IncomingDocument.browse"/>
+        </menu>
+        <menu id="outbox">
+            <item screen="daex$IncomingDocumentCustomer.browse"/>
+        </menu>
+    </menu>
+    <menu id="expertises"
+          insertBefore="administration">
+        <item screen="daex$ExpertiseCustomer.browse"/>
+        <item screen="daex$Expertise.browse"/>
+        <item screen="daex$RPD.browse"/>
+        <item screen="daex$RPDFile.browse"/>
+        <item screen="daex$RemarkAnswer.browse"/>
+        <menu id="systemExpertise">
+            <item screen="daex$AccessSettings.browse"/>
+        </menu>
+    </menu>
+    <menu id="directories"
+          insertBefore="administration">
+        <item screen="daex$Customer.browse"/>
+        <item screen="daex$Employee.browse"/>
+        <item screen="daex$HeadRPD.browse"/>
+        <menu id="systemDirectories">
+            <item screen="daex$Certificate.browse"/>
+        </menu>
+    </menu>
+</menu-config>

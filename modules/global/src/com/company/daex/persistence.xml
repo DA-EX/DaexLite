@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             version="2.0">
+    <persistence-unit name="DAEX"
+                      transaction-type="RESOURCE_LOCAL">
+        <class>com.company.daex.entity.Customer</class>
+        <class>com.company.daex.entity.HeadRPD</class>
+        <class>com.company.daex.entity.Certificate</class>
+        <class>com.company.daex.entity.Employee</class>
+        <class>com.company.daex.entity.RemarkAnswer</class>
+        <class>com.company.daex.entity.RPDFile</class>
+        <class>com.company.daex.entity.RPD</class>
+        <class>com.company.daex.entity.AccessSettings</class>
+        <class>com.company.daex.entity.Expertise</class>
+        <class>com.company.daex.entity.IncomingDocument</class>
+        <class>com.company.daex.entity.IncomingDocumentFileDescriptor</class>
+    </persistence-unit>
+</persistence>

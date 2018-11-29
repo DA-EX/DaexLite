@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.company.daex.web.rpdfile.RPDFileBrowse"
+        focusComponent="rPDFilesTable"
+        lookupComponent="rPDFilesTable"
+        messagesPack="com.company.daex.web.rpdfile">
+    <dsContext>
+        <groupDatasource id="rPDFilesDs"
+                         class="com.company.daex.entity.RPDFile"
+                         view="rPDFile-view">
+            <query>
+                <![CDATA[select e from daex$RPDFile e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="rPDFilesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="rPDFilesTable"
+                datasource="rPDFilesDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="rPDFilesTable"
+                    width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="incomedate"/>
+                <column id="beginningdate"/>
+                <column id="endingdate"/>
+                <column id="rpd.expertiseRPD.subjectName"/>
+                <column id="rpd.pressmark"/>
+                <column id="isFinal"/>
+            </columns>
+            <rows datasource="rPDFilesDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="rPDFilesTable.create"/>
+                <button id="editBtn"
+                        action="rPDFilesTable.edit"/>
+                <button id="removeBtn"
+                        action="rPDFilesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

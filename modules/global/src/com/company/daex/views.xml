@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
+    <view class="com.company.daex.entity.Certificate"
+          extends="_local"
+          name="certificate-view">
+        <property name="employee"
+                  view="_minimal"/>
+    </view>
+    <view class="com.company.daex.entity.Customer"
+          extends="_local"
+          name="customer-view"/>
+    <view class="com.company.daex.entity.Employee"
+          extends="_local"
+          name="employee-view">
+        <property name="certificate"
+                  view="_minimal">
+            <property name="delivery"/>
+            <property name="ending"/>
+        </property>
+        <property name="user_sys"
+                  view="_minimal"/>
+    </view>
+    <view class="com.company.daex.entity.HeadRPD"
+          extends="_local"
+          name="headRPD-view"/>
+    <view class="com.company.daex.entity.AccessSettings"
+          extends="_local"
+          name="accessSettings-view_1">
+        <property name="user"
+                  view="_minimal"/>
+        <property name="expertiseAccessSettings"
+                  view="_minimal">
+            <property name="subjectName"/>
+        </property>
+        <property name="employee"
+                  view="_minimal"/>
+    </view>
+    <view class="com.company.daex.entity.RPD"
+          extends="_local"
+          name="rPD-view">
+        <property name="headRPD"
+                  view="_minimal"/>
+        <property name="prdFiles"
+                  view="_minimal">
+            <property name="beginningdate"/>
+            <property name="endingdate"/>
+            <property name="remarkAnswer"
+                      view="_minimal">
+                <property name="answer"/>
+                <property name="isFixed"/>
+            </property>
+        </property>
+        <property name="expertiseRPD"
+                  view="_minimal">
+            <property name="subjectName"/>
+        </property>
+    </view>
+    <view class="com.company.daex.entity.RPDFile"
+          extends="_local"
+          name="rPDFile-view"
+          systemProperties="true">
+        <property name="files"
+                  view="_minimal">
+            <property name="size"/>
+        </property>
+        <property name="rpd"
+                  view="_minimal">
+            <property name="expertiseRPD"
+                      view="_minimal">
+            </property>
+        </property>
+        <property name="remarkAnswer"
+                  view="_minimal">
+            <property name="answer"/>
+            <property name="isFixed"/>
+        </property>
+    </view>
+    <view class="com.company.daex.entity.RemarkAnswer"
+          extends="_minimal"
+          name="remarkAnswer-view">
+        <property name="answer"/>
+        <property name="rpdFile"
+                  view="_minimal">
+            <property name="rpd"
+                      view="_minimal">
+                <property name="expertiseRPD"
+                          view="_minimal">
+                    <property name="subjectName"/>
+                </property>
+            </property>
+        </property>
+        <property name="isFixed"/>
+        <property name="filesRemarkAnswer"
+                  view="_local"/>
+    </view>
+    <view class="com.company.daex.entity.Expertise"
+          extends="_minimal"
+          name="expertise-view_Main">
+        <property name="customerMain"
+                  view="_minimal"/>
+        <property name="files"
+                  view="_minimal">
+            <property name="size"/>
+        </property>
+        <property name="customerTech"
+                  view="_minimal"/>
+        <property name="isCompleted"/>
+        <property name="pressmark"/>
+        <property name="isArchive"/>
+        <property name="leaderEmployee"
+                  view="_minimal">
+            <property name="lastName"/>
+        </property>
+        <property name="agreementNumber"/>
+        <property name="agreementDate"/>
+        <property name="cost"/>
+        <property name="subjectName"/>
+        <property name="subjectAddress"/>
+        <property name="gpzu"/>
+        <property name="accsessSettings"
+                  view="_minimal">
+            <property name="employee"
+                      view="_minimal">
+                <property name="lastName"/>
+                <property name="position"/>
+            </property>
+        </property>
+        <property name="rpd"
+                  view="_minimal"/>
+        <property name="exNumber"/>
+    </view>
+    <view class="com.company.daex.entity.IncomingDocument"
+          extends="_minimal"
+          name="incomingDocument-view-Expertise"
+          overwrite="true"
+          systemProperties="true">
+        <property name="files"
+                  view="_minimal">
+            <property name="size"/>
+        </property>
+        <property name="description"/>
+    </view>
+    <view class="com.company.daex.entity.IncomingDocument"
+          extends="_local"
+          name="incomingDocument-view-Customer">
+        <property name="files"
+                  view="_minimal"/>
+        <property name="createTs"/>
+    </view>
+    <view class="com.company.daex.entity.Expertise"
+          extends="_minimal"
+          name="expertise-view_Customer">
+        <property name="isCompleted"/>
+        <property name="pressmark"/>
+        <property name="customerMain"
+                  view="_minimal"/>
+        <property name="customerTech"
+                  view="_minimal"/>
+        <property name="agreementNumber"/>
+        <property name="agreementDate"/>
+        <property name="subjectName"/>
+        <property name="subjectAddress"/>
+    </view>
+    <view class="com.company.daex.entity.RemarkAnswer"
+          extends="_minimal"
+          name="remarkAnswer-view_Customer">
+        <property name="rpdFile"
+                  view="_minimal">
+            <property name="rpd"
+                      view="_minimal"/>
+        </property>
+        <property name="answer"/>
+    </view>
+    <view class="com.company.daex.entity.IncomingDocumentFileDescriptor"
+          extends="_local"
+          name="incomingDocumentFileDescriptor_1-view">
+        <property name="incomingDocument"
+                  view="_minimal">
+            <property name="description"/>
+        </property>
+        <property name="fileDescriptor"
+                  view="_minimal">
+            <property name="createTs"/>
+            <property name="createdBy"/>
+            <property name="size"/>
+        </property>
+    </view>
+</views>

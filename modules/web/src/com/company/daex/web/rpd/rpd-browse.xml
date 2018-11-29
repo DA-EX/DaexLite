@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.company.daex.web.rpd.RPDBrowse"
+        focusComponent="rPDsTable"
+        lookupComponent="rPDsTable"
+        messagesPack="com.company.daex.web.rpd">
+    <dsContext>
+        <groupDatasource id="rPDsDs"
+                         class="com.company.daex.entity.RPD"
+                         view="rPD-view">
+            <query>
+                <![CDATA[select e from daex$RPD e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="rPDsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="rPDsTable"
+                datasource="rPDsDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="rPDsTable"
+                    width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="headRPD"/>
+                <column id="tom"/>
+                <column id="pressmark"/>
+                <column id="expertiseRPD.subjectName"/>
+            </columns>
+            <rows datasource="rPDsDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="rPDsTable.create"/>
+                <button id="editBtn"
+                        action="rPDsTable.edit"/>
+                <button id="removeBtn"
+                        action="rPDsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

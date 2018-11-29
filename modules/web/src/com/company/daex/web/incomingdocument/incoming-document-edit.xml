@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.company.daex.web.incomingdocument.IncomingDocumentEdit"
+        datasource="incomingDocumentDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.company.daex.web.incomingdocument">
+    <dsContext>
+        <datasource id="incomingDocumentDs"
+                    class="com.company.daex.entity.IncomingDocument"
+                    view="incomingDocument-view-Expertise">
+            <collectionDatasource id="filesDs"
+                                  property="files"/>
+        </datasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="scrollBox"
+            spacing="true">
+        <scrollBox id="scrollBox"
+                   spacing="true">
+            <fieldGroup id="fieldGroup"
+                        datasource="incomingDocumentDs">
+                <column width="250px">
+                    <field property="description"
+                           rows="5"/>
+                </column>
+            </fieldGroup>
+            <groupBox id="filesBox"
+                      caption="msg://com.company.daex.entity/IncomingDocument.files">
+                <table id="filesTable"
+                       height="200px"
+                       width="100%">
+                    <actions>
+                        <action id="add"/>
+                        <action id="remove"/>
+                    </actions>
+                    <columns>
+                        <column id="name"/>
+                        <column id="createDate"/>
+                        <column id="extension"/>
+                        <column id="size"/>
+                    </columns>
+                    <rows datasource="filesDs"/>
+                    <buttonsPanel>
+                        <button id="buttonDownload"
+                                caption="msg://buttonDownload"
+                                enable="false"
+                                icon="icons/DAEX/unload.png"
+                                invoke="DownloadButtonClick"/>
+                        <button action="filesTable.add"
+                                icon="icons/DAEX/add.png"/>
+                        <button action="filesTable.remove"
+                                icon="icons/DAEX/delete.png"/>
+                    </buttonsPanel>
+                </table>
+            </groupBox>
+        </scrollBox>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

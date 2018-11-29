@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.company.daex.web.accesssettings.AccessSettingsBrowse"
+        focusComponent="accessSettingsesTable"
+        lookupComponent="accessSettingsesTable"
+        messagesPack="com.company.daex.web.accesssettings">
+    <dsContext>
+        <groupDatasource id="accessSettingsesDs"
+                         class="com.company.daex.entity.AccessSettings"
+                         view="accessSettings-view_1">
+            <query>
+                <![CDATA[select e from daex$AccessSettings e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="accessSettingsesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="accessSettingsesTable"
+                datasource="accessSettingsesDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="accessSettingsesTable"
+                    width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="user"/>
+                <column id="employee"/>
+                <column id="isRead"/>
+                <column id="expertiseAccessSettings.subjectName"/>
+            </columns>
+            <rows datasource="accessSettingsesDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="accessSettingsesTable.create"/>
+                <button id="editBtn"
+                        action="accessSettingsesTable.edit"/>
+                <button id="removeBtn"
+                        action="accessSettingsesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

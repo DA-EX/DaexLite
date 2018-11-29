@@ -1,0 +1,5 @@
+@import "../DAEX";
+
+@mixin com_haulmont_cuba {
+  @include DAEX;
+}

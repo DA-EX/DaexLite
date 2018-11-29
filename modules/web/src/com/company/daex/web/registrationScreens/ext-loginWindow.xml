@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        class="com.company.daex.web.registrationScreens.ExtAppLoginWindow"
+        extends="/com/haulmont/cuba/web/app/loginwindow/loginwindow.xml"
+        messagesPack="com.company.daex.web.registrationScreens">
+    <dialogMode height="600"
+                width="800"/>
+    <layout>
+        <vbox id="loginWrapper">
+            <vbox id="loginMainBox">
+                <grid id="loginFormLayout">
+                    <rows>
+                        <row id="submitRow">
+                            <button id="loginButton"
+                                    width="120px"/>
+                        </row>
+                        <row>
+                            <label id="registrationSpacer"/>
+                            <button id="registrationButton"
+                                    caption="msg://registrationButton"
+                                    invoke="onRegistrationBtnClick"
+                                    width="120px"/>
+                        </row>
+                    </rows>
+                </grid>
+            </vbox>
+        </vbox>
+        <label id="poweredByLink"
+               visible="false"/>
+    </layout>
+</window>

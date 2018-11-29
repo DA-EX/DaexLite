@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.company.daex.web.employee.EmployeeEdit"
+        datasource="employeeDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.company.daex.web.employee">
+    <dsContext>
+        <datasource id="employeeDs"
+                    class="com.company.daex.entity.Employee"
+                    view="employee-view">
+            <collectionDatasource id="certificateDs"
+                                  property="certificate"/>
+        </datasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="employeeDs">
+            <column width="250px">
+                <field property="firstName"/>
+                <field property="midleName"/>
+                <field property="lastName"/>
+                <field property="position"/>
+                <field caption="msg://labelUser"
+                       property="user_sys"/>
+            </column>
+        </fieldGroup>
+        <groupBox id="certificateBox"
+                  caption="msg://com.company.daex.entity/Employee.certificate">
+            <table id="certificateTable"
+                   height="200px"
+                   width="100%">
+                <actions>
+                    <action id="create"/>
+                    <action id="edit"/>
+                    <action id="remove"/>
+                </actions>
+                <columns>
+                    <column id="number"/>
+                    <column id="workingDerction"/>
+                    <column id="delivery"/>
+                    <column id="ending"/>
+                </columns>
+                <rows datasource="certificateDs"/>
+                <buttonsPanel>
+                    <button action="certificateTable.create"
+                            icon="icons/DAEX/create.png"/>
+                    <button action="certificateTable.edit"
+                            icon="icons/DAEX/edit.png"/>
+                    <button action="certificateTable.remove"
+                            icon="icons/DAEX/delete.png"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

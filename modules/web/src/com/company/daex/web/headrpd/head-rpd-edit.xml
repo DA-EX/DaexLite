@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.company.daex.web.headrpd.HeadRPDEdit"
+        datasource="headRPDDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.company.daex.web.headrpd">
+    <dsContext>
+        <datasource id="headRPDDs"
+                    class="com.company.daex.entity.HeadRPD"
+                    view="headRPD-view"/>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="headRPDDs">
+            <column width="250px">
+                <field property="pressmark"/>
+                <field property="name"/>
+            </column>
+        </fieldGroup>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

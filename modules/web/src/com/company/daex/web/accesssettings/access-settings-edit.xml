@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.company.daex.web.accesssettings.AccessSettingsEdit"
+        datasource="accessSettingsDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.company.daex.web.accesssettings">
+    <dsContext>
+        <datasource id="accessSettingsDs"
+                    class="com.company.daex.entity.AccessSettings"
+                    view="accessSettings-view_1"/>
+        <collectionDatasource id="usersDs"
+                              class="com.haulmont.cuba.security.entity.User">
+            <query>
+                <![CDATA[SELECT e FROM sec$User e WHERE e.group.name = 'Customer']]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="employeesDs"
+                              class="com.company.daex.entity.Employee">
+            <query>
+                <![CDATA[select e from daex$Employee e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="scrollBox"
+            spacing="true">
+        <scrollBox id="scrollBox"
+                   height="100px">
+            <groupBox spacing="true">
+                <grid spacing="true">
+                    <columns count="2"/>
+                    <rows>
+                        <row>
+                            <label value="msg://labelCustomer"/>
+                            <checkBox id="checkBoxCustomer"/>
+                        </row>
+                        <row>
+                            <label value="msg://labelEmployee"/>
+                            <checkBox id="checkBoxEmployee"/>
+                        </row>
+                        <row visible="false"/>
+                    </rows>
+                </grid>
+            </groupBox>
+            <groupBox spacing="true">
+                <grid id="gridMain"
+                      spacing="true">
+                    <columns count="2"/>
+                    <rows>
+                        <row id="rowGMain_Customer">
+                            <label id="labelCustomer"
+                                   value="msg://labelCustomer"/>
+                            <lookupPickerField id="lookupPickerFieldCustomer"
+                                               datasource="accessSettingsDs"
+                                               optionsDatasource="usersDs"
+                                               property="user"/>
+                        </row>
+                        <row id="rowGMain_Employee">
+                            <label id="labelEmployee"
+                                   value="msg://labelEmployee"/>
+                            <pickerField id="pickerFieldEmployee"
+                                         datasource="accessSettingsDs"
+                                         property="employee"/>
+                        </row>
+                        <row id="rowGMain_IsRean">
+                            <label value="msg://labelIsRead"/>
+                            <checkBox datasource="accessSettingsDs"
+                                      property="isRead"/>
+                        </row>
+                    </rows>
+                </grid>
+            </groupBox>
+            <fieldGroup id="fieldGroup"
+                        datasource="accessSettingsDs"
+                        visible="false">
+                <column width="250px">
+                    <field property="user"/>
+                    <field property="isRead"/>
+                    <field property="employee"/>
+                </column>
+            </fieldGroup>
+        </scrollBox>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

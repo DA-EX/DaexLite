@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.company.daex.web.expertise.Customer.ExpertiseEdit"
+        datasource="expertiseDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.company.daex.web.expertise.Customer">
+    <dsContext>
+        <datasource id="expertiseDs"
+                    class="com.company.daex.entity.Expertise"
+                    view="expertise-view_Main">
+            <collectionDatasource id="filesDs"
+                                  property="files"/>
+        </datasource>
+        <groupDatasource id="RemarkAnswerDs"
+                         class="com.company.daex.entity.RemarkAnswer"
+                         view="remarkAnswer-view_Customer">
+            <query>
+                <![CDATA[select e from daex$RemarkAnswer e
+JOIN daex$RPDFile rpdf ON rpdf.id = e.rpdFile.id
+JOIN daex$RPD rpd ON rpd.id = rpdf.rpd.id
+WHERE rpd.expertiseRPD.id = :ds$expertiseDs AND
+e.isFixed = FALSE]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="scrollBox"
+            spacing="true">
+        <scrollBox id="scrollBox">
+            <accordion id="accordion">
+                <tab id="tabMainInfo"
+                     caption="msg://accordionTabMainInfo"
+                     margin="true,false,false,false"
+                     spacing="true">
+                    <fieldGroup id="fieldGroup"
+                                datasource="expertiseDs"
+                                enable="false">
+                        <column width="250px">
+                            <field property="pressmark"/>
+                            <field property="customerMain"/>
+                            <field property="customerTech"/>
+                        </column>
+                    </fieldGroup>
+                </tab>
+                <tab id="tabRemarkAnswer"
+                     caption="msg://accordionTabRemarkAnswer"
+                     margin="true,false,false,false"
+                     spacing="true">
+                    <buttonsPanel>
+                        <button action="groupTableRemarkAnswer.edit"/>
+                    </buttonsPanel>
+                    <groupTable id="groupTableRemarkAnswer"
+                                height="250px"
+                                width="100%">
+                        <actions>
+                            <action id="edit"/>
+                        </actions>
+                        <columns>
+                            <group>
+                                <column id="rpdFile.rpd.pressmark"/>
+                            </group>
+                            <column id="remark"/>
+                            <column id="answer"/>
+                        </columns>
+                        <rows datasource="RemarkAnswerDs"/>
+                    </groupTable>
+                </tab>
+            </accordion>
+        </scrollBox>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://registrationScreen"
+        class="com.company.daex.web.registrationScreens.Registration"
+        messagesPack="com.company.daex.web.registrationScreens">
+    <dialogMode height="350"
+                width="600"/>
+    <layout>
+        <vbox id="vbox"
+              align="MIDDLE_CENTER"
+              spacing="true">
+            <groupBox id="groupBox"
+                      align="MIDDLE_CENTER"
+                      spacing="true">
+                <label id="labelWelcom"
+                       align="MIDDLE_CENTER"
+                       value="msg://welcomLabel"/>
+                <grid id="grid"
+                      align="MIDDLE_CENTER"
+                      spacing="true">
+                    <columns count="3"/>
+                    <rows>
+                        <row id="SecondNameRow">
+                            <label id="labelSecondName"
+                                   align="MIDDLE_RIGHT"
+                                   value="msg://SecondNameLabel"/>
+                            <textField id="textFieldSecondName"
+                                       width="210px"/>
+                        </row>
+                        <row id="FirstNameRow">
+                            <label id="labelFirstName"
+                                   align="MIDDLE_RIGHT"
+                                   value="msg://firstNameLabel"/>
+                            <textField id="textFieldFirstName"
+                                       width="210px"/>
+                        </row>
+                        <row id="EmailRow">
+                            <label id="labelEmail"
+                                   align="MIDDLE_RIGHT"
+                                   value="msg://emailLabel"/>
+                            <textField id="textFieldEmail"
+                                       align="MIDDLE_LEFT"
+                                       contextHelpText="msg://HelpTextEmail"
+                                       width="210px"/>
+                        </row>
+                        <row id="PasswordRow">
+                            <label id="labelPassword"
+                                   align="MIDDLE_RIGHT"
+                                   value="msg://passwordLabel"/>
+                            <textField id="textFieldPassword"
+                                       width="210px"/>
+                        </row>
+                        <row id="buttonRow">
+                            <button id="buttonCancel"
+                                    caption="msg://cancelButton"
+                                    invoke="onCancelBtnClick"
+                                    width="110px"/>
+                            <label id="buttonSpacer"
+                                   value="                "
+                                   width="100px"/>
+                            <button id="buttonSubmit"
+                                    caption="msg://submitButton"
+                                    invoke="onSubmitBtnClick"
+                                    width="110px"/>
+                        </row>
+                    </rows>
+                </grid>
+            </groupBox>
+        </vbox>
+    </layout>
+</window>

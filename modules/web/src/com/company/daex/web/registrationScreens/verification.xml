@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://caption"
+        class="com.company.daex.web.registrationScreens.Verification"
+        messagesPack="com.company.daex.web.registrationScreens">
+    <dialogMode height="300"
+                width="500"/>
+    <layout>
+        <vbox id="vbox"
+              align="MIDDLE_CENTER"
+              spacing="true">
+            <groupBox spacing="true">
+                <label id="wecomLabel"
+                       align="MIDDLE_CENTER"
+                       value="msg://welcomLabelVerification"/>
+                <label id="warnignLabel"
+                       align="MIDDLE_CENTER"
+                       value="msg://warningLabel"/>
+                <grid id="grid"
+                      align="MIDDLE_CENTER"
+                      spacing="true">
+                    <columns count="2"/>
+                    <rows>
+                        <row/>
+                        <row id="rowVerificationCode">
+                            <label id="labelVerificationCode"
+                                   align="MIDDLE_RIGHT"
+                                   value="msg://VerificationCode"/>
+                            <textField id="textFieldVerificationCode"/>
+                        </row>
+                        <row id="rowSubmitButton">
+                            <label id="labelSpacer"/>
+                            <button id="buttonSubmit"
+                                    caption="msg://submitButton"
+                                    invoke="onSubmitBtnClick"/>
+                        </row>
+                    </rows>
+                </grid>
+            </groupBox>
+        </vbox>
+    </layout>
+</window>

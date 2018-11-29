@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.company.daex.web.certificate.CertificateBrowse"
+        focusComponent="certificatesTable"
+        lookupComponent="certificatesTable"
+        messagesPack="com.company.daex.web.certificate">
+    <dsContext>
+        <groupDatasource id="certificatesDs"
+                         class="com.company.daex.entity.Certificate"
+                         view="certificate-view">
+            <query>
+                <![CDATA[select e from daex$Certificate e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="certificatesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="certificatesTable"
+                datasource="certificatesDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="certificatesTable"
+                    width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="number"/>
+                <column id="workingDerction"/>
+                <column id="delivery"/>
+                <column id="ending"/>
+                <column id="employee"/>
+            </columns>
+            <rows datasource="certificatesDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="certificatesTable.create"/>
+                <button id="editBtn"
+                        action="certificatesTable.edit"/>
+                <button id="removeBtn"
+                        action="certificatesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

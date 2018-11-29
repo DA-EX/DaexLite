@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.company.daex.web.certificate.CertificateEdit"
+        datasource="certificateDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.company.daex.web.certificate">
+    <dsContext>
+        <datasource id="certificateDs"
+                    class="com.company.daex.entity.Certificate"
+                    view="certificate-view"/>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="certificateDs">
+            <column width="250px">
+                <field property="number"/>
+                <field property="workingDerction"/>
+                <field property="delivery"/>
+                <field property="ending"/>
+                <field property="employee"/>
+            </column>
+        </fieldGroup>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

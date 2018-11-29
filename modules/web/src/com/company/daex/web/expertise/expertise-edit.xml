@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.company.daex.web.expertise.ExpertiseEdit"
+        datasource="expertiseDs"
+        messagesPack="com.company.daex.web.expertise">
+    <dsContext>
+        <datasource id="expertiseDs"
+                    class="com.company.daex.entity.Expertise"
+                    view="expertise-view_Main">
+            <collectionDatasource id="accsessSettingsDs"
+                                  property="accsessSettings"/>
+            <collectionDatasource id="filesDs"
+                                  property="files"/>
+        </datasource>
+        <collectionDatasource id="rpdDs"
+                              class="com.company.daex.entity.RPD"
+                              view="rPD-view">
+            <query>
+                <![CDATA[select e from daex$RPD e where e.expertiseRPD.id = :ds$expertiseDs]]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="accessSettingsesEmployee"
+                              class="com.company.daex.entity.AccessSettings"
+                              view="accessSettings-view_1">
+            <query>
+                <![CDATA[select e from daex$AccessSettings e
+WHERE e.expertiseAccessSettings.id = :ds$expertiseDs and
+e.employee IS NOT NULL]]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="accessSettingsesCustomer"
+                              class="com.company.daex.entity.AccessSettings"
+                              view="accessSettings-view_1">
+            <query>
+                <![CDATA[select e from daex$AccessSettings e
+WHERE e.expertiseAccessSettings.id = :ds$expertiseDs and
+e.employee IS NULL]]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="employeesDs"
+                              class="com.company.daex.entity.Employee">
+            <query>
+                <![CDATA[select e from daex$Employee e]]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="customersDs"
+                              class="com.company.daex.entity.Customer">
+            <query>
+                <![CDATA[select e from daex$Customer e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="tabSheet"
+            spacing="true">
+        <tabSheet id="tabSheet">
+            <tab id="MainTab"
+                 caption="msg://MainTab"
+                 icon="icons/DAEX/main.png"
+                 margin="true,false,false,false"
+                 spacing="true">
+                <scrollBox id="scrollBox"
+                           height="100%"
+                           spacing="true">
+                    <grid spacing="true">
+                        <columns count="4"/>
+                        <rows>
+                            <row>
+                                <label id="labelENumber"
+                                       value="msg://labelENumber"/>
+                                <textField id="textFieldENumber"
+                                           datasource="expertiseDs"
+                                           property="exNumber"
+                                           width="250px"/>
+                                <label id="labelPressmark"
+                                       value="msg://labelPressmark"/>
+                                <textField id="textFieldPressmark"
+                                           datasource="expertiseDs"
+                                           property="pressmark"
+                                           width="250px"/>
+                            </row>
+                            <row>
+                                <label id="labelLeaderEmployee"
+                                       value="msg://labelLeaderEmployee"/>
+                                <lookupPickerField id="lookupPickerFieldLeaderEmployee"
+                                                   datasource="expertiseDs"
+                                                   optionsDatasource="employeesDs"
+                                                   property="leaderEmployee">
+                                    <actions>
+                                        <action id="open"/>
+                                        <action id="clear"/>
+                                    </actions>
+                                </lookupPickerField>
+                            </row>
+                            <row>
+                                <label id="labelCustomer"
+                                       value="msg://labelCustomer"/>
+                                <lookupPickerField id="lookupPickerFieldCustomer"
+                                                   datasource="expertiseDs"
+                                                   optionsDatasource="customersDs"
+                                                   property="customerMain">
+                                    <actions>
+                                        <action id="open"/>
+                                        <action id="clear"/>
+                                    </actions>
+                                </lookupPickerField>
+                                <label id="labelCustomerTech"
+                                       value="msg://labelCustomerTech"/>
+                                <lookupPickerField id="lookupPickerFieldCustomerTech"
+                                                   datasource="expertiseDs"
+                                                   optionsDatasource="customersDs"
+                                                   property="customerTech">
+                                    <actions>
+                                        <action id="open"/>
+                                        <action id="clear"/>
+                                    </actions>
+                                </lookupPickerField>
+                            </row>
+                            <row>
+                                <label id="labelAgreementNumber"
+                                       value="msg://labelAgreementNumber"/>
+                                <textField id="textFieldAgreementNumber"
+                                           datasource="expertiseDs"
+                                           property="agreementNumber"
+                                           width="100%"/>
+                                <label id="labelAgreementDate"
+                                       value="msg://labelAgreementDate"/>
+                                <dateField id="dateFieldAgreementDate"
+                                           datasource="expertiseDs"
+                                           property="agreementDate"
+                                           rangeStart="2018-11-01"
+                                           width="100%"/>
+                            </row>
+                            <row>
+                                <label id="labelCost"
+                                       value="msg://labelCost"/>
+                                <textField id="textFieldCost"
+                                           datasource="expertiseDs"
+                                           inputPrompt="msg://inputPromtCost"
+                                           property="cost"
+                                           width="100%"/>
+                            </row>
+                            <row>
+                                <label id="labelSubjectName"
+                                       value="msg://labelSubjectName"/>
+                                <textField id="textFieldSubjectName"
+                                           colspan="3"
+                                           datasource="expertiseDs"
+                                           property="subjectName"
+                                           width="100%"/>
+                            </row>
+                            <row>
+                                <label id="labelSubjectAddress"
+                                       value="msg://labelSubjectAddress"
+                                       width="100%"/>
+                                <textField id="textFieldSubjectAddress"
+                                           colspan="3"
+                                           datasource="expertiseDs"
+                                           property="subjectAddress"
+                                           width="100%"/>
+                            </row>
+                            <row>
+                                <label id="labelGPZU"
+                                       value="msg://labelGPZU"/>
+                                <textField id="textFieldGPZU"
+                                           datasource="expertiseDs"
+                                           property="gpzu"
+                                           width="100%"/>
+                            </row>
+                        </rows>
+                    </grid>
+                </scrollBox>
+            </tab>
+            <tab id="RPDTab"
+                 caption="msg://RPDTab"
+                 icon="icons/DAEX/rpd.png"
+                 margin="true,false,false,false"
+                 spacing="true">
+                <groupBox id="rpdBox"
+                          caption="msg://com.company.daex.entity/Expertise.rpd">
+                    <table id="rpdTable"
+                           height="400px"
+                           width="100%">
+                        <actions>
+                            <action id="create"/>
+                            <action id="edit"/>
+                            <action id="remove"/>
+                        </actions>
+                        <columns>
+                            <column id="pressmark"/>
+                        </columns>
+                        <rows datasource="rpdDs"/>
+                        <buttonsPanel id="RPDButtonsPanel">
+                            <button id="RPDaddRecordButton"
+                                    caption="msg://addRecordButton"
+                                    icon="icons/DAEX/create.png"
+                                    invoke="AddRecord"/>
+                            <button id="RPDeditButton"
+                                    action="rpdTable.edit"
+                                    enable="false"
+                                    icon="icons/DAEX/edit.png"/>
+                            <button id="RPDremoveButton"
+                                    action="rpdTable.remove"
+                                    enable="false"
+                                    icon="icons/DAEX/delete.png"
+                                    visible="false"/>
+                        </buttonsPanel>
+                    </table>
+                </groupBox>
+            </tab>
+            <tab id="FilesTab"
+                 caption="msg://FIlesTab"
+                 icon="icons/DAEX/attachment.png"
+                 margin="true,false,false,false"
+                 spacing="true">
+                <groupBox id="filesBox"
+                          caption="msg://com.company.daex.entity/Expertise.files">
+                    <table id="filesTable"
+                           height="400px"
+                           width="100%">
+                        <actions>
+                            <action id="add"/>
+                            <action id="remove"/>
+                        </actions>
+                        <columns>
+                            <column id="name"/>
+                            <column id="createDate"/>
+                            <column id="extension"/>
+                        </columns>
+                        <rows datasource="filesDs"/>
+                        <buttonsPanel id="FilesButtonsPanel">
+                            <multiUpload id="FmultiUpload"
+                                         icon="icons/DAEX/download.png"/>
+                            <button id="buttonDownloadFile"
+                                    caption="msg://downloadButton"
+                                    enable="false"
+                                    icon="icons/DAEX/unload.png"
+                                    invoke="onDownloadButtonClick"/>
+                            <button id="FaddButton"
+                                    action="filesTable.add"
+                                    icon="icons/DAEX/add.png"/>
+                            <button id="FremoveButton"
+                                    action="filesTable.remove"
+                                    icon="icons/DAEX/delete.png"
+                                    visible="false"/>
+                        </buttonsPanel>
+                    </table>
+                </groupBox>
+            </tab>
+            <tab id="SettingsTab"
+                 caption="msg://SettingsTab"
+                 icon="icons/DAEX/settings.png"
+                 margin="true,false,false,false"
+                 spacing="true">
+                <scrollBox id="scrollBox_1">
+                    <groupBox id="accsessSettingsBox"
+                              caption="msg://com.company.daex.entity/Expertise.accsessSettings">
+                        <table id="tableAccsessSettingsCustomer"
+                               height="250px"
+                               width="100%">
+                            <actions>
+                                <action id="create"/>
+                                <action id="edit"/>
+                                <action id="remove"/>
+                            </actions>
+                            <columns>
+                                <column id="user"
+                                        caption="msg://columnUsers"/>
+                                <column id="isRead"/>
+                            </columns>
+                            <rows datasource="accessSettingsesCustomer"/>
+                            <buttonsPanel id="AccsessSettingsButtonsPanel">
+                                <button id="add"
+                                        caption="msg://addRecordButton"
+                                        icon="icons/DAEX/create.png"
+                                        invoke="AddAccessSetting"/>
+                                <button id="ASeditButton"
+                                        action="tableAccsessSettingsCustomer.edit"
+                                        icon="icons/DAEX/edit.png"/>
+                                <button id="ASremoveButton"
+                                        action="tableAccsessSettingsCustomer.remove"
+                                        icon="icons/DAEX/delete.png"/>
+                            </buttonsPanel>
+                        </table>
+                        <table id="tableAccsessSettingsEmployee"
+                               height="250px"
+                               width="100%">
+                            <actions>
+                                <action id="create"/>
+                                <action id="edit"/>
+                                <action id="remove"/>
+                            </actions>
+                            <columns>
+                                <column id="employee"/>
+                                <column id="isRead"/>
+                            </columns>
+                            <rows datasource="accessSettingsesEmployee"/>
+                        </table>
+                    </groupBox>
+                </scrollBox>
+            </tab>
+            <tab id="EGRZTab"
+                 caption="EGRZ"
+                 margin="true,false,false,false"
+                 spacing="true">
+                <scrollBox height="100px">
+                    <buttonsPanel>
+                        <button caption="msg://buttonComplited"
+                                invoke="InEGRZ"/>
+                    </buttonsPanel>
+                </scrollBox>
+            </tab>
+        </tabSheet>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

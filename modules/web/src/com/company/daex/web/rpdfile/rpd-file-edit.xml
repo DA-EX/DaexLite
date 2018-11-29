@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.company.daex.web.rpdfile.RPDFileEdit"
+        datasource="rpdFileDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.company.daex.web.rpdfile">
+    <dsContext>
+        <datasource id="rpdFileDs"
+                    class="com.company.daex.entity.RPDFile"
+                    view="rPDFile-view">
+            <collectionDatasource id="filesDs"
+                                  property="files"/>
+        </datasource>
+        <collectionDatasource id="remarkAnswersDs"
+                              class="com.company.daex.entity.RemarkAnswer"
+                              view="remarkAnswer-view">
+            <query>
+                <![CDATA[select e from daex$RemarkAnswer e where e.rpdFile.id = :ds$rpdFileDs]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="tabSheet"
+            spacing="true">
+        <tabSheet id="tabSheet">
+            <tab id="MainTab"
+                 caption="msg://MainTab"
+                 icon="icons/DAEX/main.png"
+                 margin="true,false,false,false"
+                 spacing="true">
+                <scrollBox>
+                    <fieldGroup id="fieldGroup"
+                                datasource="rpdFileDs">
+                        <column width="250px">
+                            <field editable="false"
+                                   property="createTs"/>
+                            <field property="incomedate"
+                                   visible="false"/>
+                            <field property="beginningdate"/>
+                            <field property="endingdate"/>
+                        </column>
+                    </fieldGroup>
+                    <buttonsPanel height="30px">
+                        <button id="buttonFinalVersion"
+                                caption="msg://buttomFinalVersion"
+                                height="30px"
+                                invoke="FinalVersion"/>
+                    </buttonsPanel>
+                    <groupBox id="filesBox"
+                              caption="msg://com.company.daex.entity/RPDFile.files">
+                        <table id="filesTable"
+                               height="200px"
+                               width="100%">
+                            <actions>
+                                <action id="add"/>
+                                <action id="remove"/>
+                            </actions>
+                            <columns>
+                                <column id="name"/>
+                                <column id="createDate"/>
+                                <column id="extension"/>
+                                <column id="size"/>
+                            </columns>
+                            <rows datasource="filesDs"/>
+                            <buttonsPanel>
+                                <multiUpload id="multiUpload"
+                                             caption="msg://multiUpload"
+                                             icon="icons/DAEX/download.png"/>
+                                <button id="buttonUnload"
+                                        caption="msg://buttonUnload"
+                                        enable="false"
+                                        icon="icons/DAEX/unload.png"
+                                        invoke="onDownloadButtonClick"/>
+                                <button id="buttonAddFile"
+                                        caption="msg://buttonAdd"
+                                        icon="icons/DAEX/add.png"
+                                        invoke="AddFile"/>
+                                <button id="buttonRemoveFile"
+                                        action="filesTable.remove"
+                                        icon="icons/DAEX/delete.png"/>
+                            </buttonsPanel>
+                        </table>
+                    </groupBox>
+                </scrollBox>
+            </tab>
+            <tab id="RamarkAnswerTab"
+                 caption="msg://RamarkAnswerTab"
+                 icon="icons/DAEX/remark-answer.png"
+                 margin="true,false,false,false"
+                 spacing="true">
+                <groupBox id="remarkAnswerBox"
+                          caption="msg://com.company.daex.entity/RPDFile.remarkAnswer">
+                    <table id="remarkAnswerTable"
+                           height="200px"
+                           width="100%">
+                        <actions>
+                            <action id="create"/>
+                            <action id="edit"/>
+                            <action id="remove"/>
+                        </actions>
+                        <columns>
+                            <column id="remark"
+                                    maxTextLength="100"/>
+                            <column id="answer"
+                                    maxTextLength="100"/>
+                            <column id="isFixed"/>
+                        </columns>
+                        <rows datasource="remarkAnswersDs"/>
+                        <buttonsPanel>
+                            <button id="butttonCreateRA"
+                                    caption="msg://addRowButton"
+                                    icon="icons/DAEX/create.png"
+                                    invoke="AddRecord"/>
+                            <button id="butttonEditRA"
+                                    action="remarkAnswerTable.edit"
+                                    icon="icons/DAEX/edit.png"/>
+                        </buttonsPanel>
+                    </table>
+                </groupBox>
+            </tab>
+        </tabSheet>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>
